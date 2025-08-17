@@ -1,4 +1,3 @@
-﻿// POKEDEXX/Services/PokeApiService.cs
 
 using POKEDEXX.Models;
 using System.Net.Http;
