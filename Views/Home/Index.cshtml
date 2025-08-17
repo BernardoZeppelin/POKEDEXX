@@ -1,0 +1,55 @@
+﻿@* Adicionamos o modelo que esta View espera receber *@
+@model PokemonViewModel
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - POKEDEXX</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<div class="text-center">
+    <h1 class="display-4">Pokédex Web</h1>
+    <p>Digite o nome ou número de um Pokémon e clique em buscar!</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Index" method="post"> @* !! *@
+            <div class="input-group mb-3">
+                <input name="searchTerm" class="form-control" placeholder="Ex: 25 ou Pikachu" required />
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Buscar Pokémon</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* O resto do arquivo permanece igual *@
+@if (Model != null)
+{
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6 text-center">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">@(@Model.Name.First().ToString().ToUpper() + @Model.Name.Substring(1))</h2>
+                </div>
+                <div class="card-body">
+                    <img src="@Model.Sprites.FrontDefault" alt="Sprite de @Model.Name" class="img-fluid" style="width: 150px;" />
+                    <ul class="list-group list-group-flush mt-3">
+                        <li class="list-group-item"><strong>Número:</strong> @Model.Id</li>
+                        <li class="list-group-item"><strong>Altura:</strong> @(Model.Height * 10) cm</li>
+                        <li class="list-group-item"><strong>Peso:</strong> @((double)Model.Weight / 10) kg</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger text-center" role="alert">
+        @ViewData["ErrorMessage"]
+    </div>
+}
