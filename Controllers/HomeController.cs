@@ -1,5 +1,3 @@
-// POKEDEXX/Controllers/HomeController.cs
-
 using Microsoft.AspNetCore.Mvc;
 using POKEDEXX.Models;
 using POKEDEXX.Services;
@@ -30,7 +28,7 @@ public class HomeController : Controller
   
         if (string.IsNullOrWhiteSpace(searchTerm))
         {
-            ViewData["ErrorMessage"] = "Por favor, digite um nome ou número de Pokémon.";
+            ViewData["ErrorMessage"] = "Por favor, digite um nome ou nÃºmero de PokÃ©mon.";
             return View();
         }
 
@@ -40,7 +38,7 @@ public class HomeController : Controller
         if (pokemon == null)
         {
 
-            ViewData["ErrorMessage"] = $"Pokémon '{searchTerm}' não foi encontrado. Tente outro.";
+            ViewData["ErrorMessage"] = $"PokÃ©mon '{searchTerm}' nÃ£o foi encontrado. Tente outro.";
         }
 
         return View(pokemon);
